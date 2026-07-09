@@ -42,6 +42,7 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 
 // ── The pregnancy status observation itself ──
 * code = $LOINC#82810-3
+* value[x] 1..1
 * value[x] only CodeableConcept
 * hasMember only Reference($BeClinObs)
 * hasMember MS
@@ -67,12 +68,13 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 * contained ^slicing.discriminator[1].path = "code"
 * contained ^slicing.rules = #open
 * contained contains
-    estimatedDateOfDelivery 0..1 MS and
-    expectedNumberOfChildren 0..1 MS and
+    estimatedDateOfDelivery 1..1 MS and
+    expectedNumberOfChildren 1..1 MS and
     endOfPregnancyDate 0..1 MS
 
 * contained[estimatedDateOfDelivery] only $BeClinObs
 * contained[estimatedDateOfDelivery].code = $LOINC#11778-8
+* contained[estimatedDateOfDelivery].value[x] 1..1
 * contained[estimatedDateOfDelivery].value[x] only dateTime
 * contained[estimatedDateOfDelivery].bodySite 0..0
 * contained[estimatedDateOfDelivery].component 0..0
@@ -84,6 +86,7 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 
 * contained[expectedNumberOfChildren] only $BeClinObs
 * contained[expectedNumberOfChildren].code = $LOINC#11878-6
+* contained[expectedNumberOfChildren].value[x] 1..1
 * contained[expectedNumberOfChildren].value[x] only integer
 * contained[expectedNumberOfChildren].bodySite 0..0
 * contained[expectedNumberOfChildren].component 0..0
@@ -95,6 +98,7 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 
 * contained[endOfPregnancyDate] only $BeClinObs
 * contained[endOfPregnancyDate].code = $SCT#289251005
+* contained[endOfPregnancyDate].value[x] 1..1
 * contained[endOfPregnancyDate].value[x] only dateTime
 * contained[endOfPregnancyDate].bodySite 0..0
 * contained[endOfPregnancyDate].component 0..0
