@@ -42,7 +42,7 @@ Description: "Practitioner who records the pregnancy data in all examples."
 * name.family = "De Vries"
 * name.given = "Anke"
 
-
+/*     
 // ─── Pregnancy as a Condition (episode framing) ──────────────────────────────
 //  The pregnancy modelled as a longitudinal Condition. Detail observations may
 //  reference it via Observation.focus (literal or logical reference).
@@ -57,7 +57,7 @@ Description: "Episode framing: the pregnancy modelled as a longitudinal Conditio
 * recorder = Reference(ex-gynaecologist)
 * recordedDate = "2026-02-10"
 * onsetDateTime = "2026-01-05"
-
+*/
 
 // ═══════════════════════════════════════════════════════════════════════════════
 //  DISABLED (2026-07-09): standalone Observation examples for the earlier
