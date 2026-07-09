@@ -1,0 +1,39 @@
+// ═══════════════════════════════════════════════════════════════════════════════
+//  OPTION B — "pregnancy" overall element modelled as a BeClinicalObservation.
+//
+//  The pregnancy status is itself a BeObservation, mirroring the IPS
+//  "Pregnancy status" observation (LOINC 82810-3, SNOMED-coded value). The detail
+//  data (EDD, expected number of children, end date) are separate
+//  BeClinicalObservations grouped under this one via Observation.hasMember.
+//
+//  Pros: IPS-compatible — same resource type, code and value pattern as
+//        Observation-pregnancy-status-uv-ips, so the data flows into an IPS
+//        composition unchanged. Consistent "everything is an Observation" model.
+//  Cons: a longitudinal pregnancy episode (onset/abatement, clinicalStatus) is
+//        less naturally expressed on a point-in-time Observation.
+//
+//  Element -> mapping (logical model PregnancyStatusDataSet1):
+//    * patient                 -> Observation.subject
+//    * practitioner            -> Observation.performer
+//    * recordedDateOfPregnancy -> Observation.issued
+//    * observationDate         -> Observation.effectiveDateTime
+//    * pregnancyStatus         -> Observation.valueCodeableConcept
+// ═══════════════════════════════════════════════════════════════════════════════
+
+Profile: BePregnancyStatusObservation
+Parent: $BeObservation
+Id: be-pregnancy-status-observation
+Title: "Pregnancy Status (Observation)"
+Description: "Option B: the pregnancy status modelled as a BeClinicalObservation (BeObservation), aligned with the IPS Pregnancy status observation. Detail observations (EDD, expected number of children, end date) are grouped via hasMember."
+* status = #final (exactly)
+* code = $LOINC#82810-3 "Pregnancy status" (exactly)
+* subject 1..1
+* subject only Reference(Patient)
+* performer 1..1
+* effective[x] only dateTime
+* effectiveDateTime 1..1
+* value[x] only CodeableConcept
+* valueCodeableConcept 1..1
+* valueCodeableConcept from BePregnancyStatusVS (extensible)
+// Group the detail observations under the overall pregnancy status (IPS pattern):
+* hasMember only Reference(BePregnancyExpectedDeliveryDate or BePregnancyExpectedNumberOfChildren or BePregnancyEndDate)

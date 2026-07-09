@@ -1,0 +1,112 @@
+@startuml
+skinparam ClassBackgroundColor #b5e8f7
+'skinparam linetype polyline
+hide circle
+
+' ─────────────────────────────────────────────────────────────────────────────
+' Two ways to represent "the pregnancy" in the Pregnancy Status report.
+'
+'  Option A : the pregnancy is a NEW class -> a Condition.
+'             The Condition can be "summarized" into a PregnancyStatus
+'             (a ClinicalObservation), which is the IPS-compatible shape.
+'
+'  Option B : we only ever exchange the "summary" -> the PregnancyStatus
+'             Observation (no Condition).
+'
+'  In BOTH options the detail data (EDD, number of children, end date)
+'  are ClinicalObservations.
+' ─────────────────────────────────────────────────────────────────────────────
+
+' ── Option B: the new class ───────────────────────────────────────────────────
+class "**Pregnancy**\n(Condition)" as PREG #ffe6b5 {
+|_ patient 1..1 <<Ref>>
+|_ identifier 1..* <<Id>>
+|_ author 1..1 <<Ref>>
+|_ recordedDate 1..1 <<date>>
+|_ clinicalStatus 1..1 <<code>>  (active | resolved)
+|_ code 1..1 <<code>>            (pregnant)
+|_ onset 0..1 <<date>>
+|_ abatement 0..1 <<date>>       (= actualDateOfEndOfPregnancy)
+}
+
+' ── The summary / IPS-compatible shape ────────────────────────────────────────
+class "**PregnancyStatus**\n(ClinicalObservation)" as PSO {
+|_ patient 1..1 <<Ref>>
+'|_ pregnancyIdentifier 1..* <<Id>>
+|_ recorder 1..1 <<Ref>>
+|_ recorded_date 1..1 <<date>>
+|_ status 1..1 <<code>>
+|_ value : pregnancyStatus 1..1 <<code>>   
+'|_ **expectedDateOfDelivery** 1..1 <<date>>        (ClinicalObservation)
+'|_ **expectedNumberOfChildren** 1..1 <<integer>>   (ClinicalObservation)
+'|_ **actualDateOfEndOfPregnancy** 0..1 <<date>>    (ClinicalObservation)
+}
+
+class "**expectedDateOfDelivery**\n(ClinicalObservation)" as edd {
+|_ value 1..1 <<date>>
+}
+
+
+class "**expectedNumberOfChildren**\n(ClinicalObservation)" as enc {
+|_ value 1..1 <<integer>>
+}
+
+
+class "**actualDateOfEndOfPregnancy**\n(ClinicalObservation)" as ade {
+|_ value 1..1 <<date>>
+}
+
+' ── Detail observations: relationships + cardinalities ───────────────────────
+' Multiplicities are taken from the logical model PregnancyStatusDataSet1.
+'
+' SOLID  = the PARENT knows its children: PregnancyStatus groups the member
+'          observations (Observation.hasMember). The children do NOT point back,
+'          so a member observation never changes when grouped here.
+PSO "1" o-u- "1..1" edd
+PSO "1" o-u- "1..1" enc
+PSO "1" o-r- "0..1" ade
+
+' DASHED = can be ADDED LATER, no redesign: when a Condition is introduced it is
+'          the OBSERVATION that references the parent (e.g. Observation.focus).
+'          The observation itself is unchanged.
+edd "1..1" .u.> "0..1" PREG : focus
+enc "1..1" .u.> "0..1" PREG : focus
+PSO "0..1" .u.> "0..1" PREG : focus
+
+' Option B: the Condition is summarized into the PregnancyStatus observation
+'PREG "1" ..> "1" PSO : <<summarized as>>
+
+note left of PREG
+  **Full Scope** - we use the **Condition**
+  (the pregnancy as a clinical episode),
+  as a context and "parent" object.
+end note
+
+note left of PSO
+  **Option 1** - only the PregnancyStatus Observation
+  (IPS-compatible). No Condition exchanged. 
+  When Pregnancy (Condition) exists, the PregnancyStatus 
+  may have a reference (identifier) to the actual Pregnancy.
+end note
+
+legend bottom
+  **Compatibility **
+  
+  It is possible to use **PregnancyStatus** (Observation) + member observations.  
+  The **parent knows its children** (Observation.hasMember); the children do not
+  point back. So a member observation (EDD, number of children, end date)
+  **never changes intrinsically** when it is grouped under a PregnancyStatus.
+  
+  A **Pregnancy (Condition)** and its relationships can be **added later**.
+  In that case it is the **observation that references the parent**
+  (e.g. Observation.focus, or an extension). Adding the Condition therefore
+  does **not** require redesigning the existing observations - the very same
+  observation may simply *also* be referenced from a Condition.
+
+  The Condition may also be used without the Observation Status - the options 
+  are therefore mutually compatible.
+
+
+endlegend
+
+@enduml
