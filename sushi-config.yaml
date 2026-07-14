@@ -8,17 +8,25 @@ canonical: https://www.ehealth.fgov.be/standards/fhir/pregnancy-status
 name: BeFhirPregnancyStatus
 title: "Belgian Pregnancy Status Implementation Guide"
 description: "Belgian FHIR Implementation Guide for pregnancy data. Initial scope: a small set of pregnancy-status data — pregnancy confirmation, expected due date, expected number of children, and pregnancy duration. Vitalink FHIR and MAGDA are one implementation, collecting this data from EMR/hospital systems and making it available to government agencies (notably VUTG for Groeipakket entitlement), to citizen platforms (mijngezondheid.be, mijnburgerprofiel.be) and to caregivers. The IG is designed to grow incrementally, with administrative and clinical pregnancy data added by other stakeholders and projects (eBirth, Born in Belgium, Zoet Zwanger, PALS, AZ Turnhout moeder/kind boekje, etc.) over time."
-status: draft # draft | active | retired | unknown
-version: 0.1.0
+status: active # draft | active | retired | unknown
+version: 1.0.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2026+
 releaseLabel: ci-build
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#BE "Belgium"
+date: 2026-08-21
 publisher:
-  name: Departement Zorg
-  url: https://www.departementzorg.be
-  # email:
+  name: eHealth Platform
+  url: http://www.ehealth.fgov.be/
+  email: support@be-ehealth-standards.atlassian.net
+
+contact:
+  - name: Message Structure
+    telecom:
+      - system: email
+        value: support@be-ehealth-standards.atlassian.net
+        use: work  
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
@@ -73,6 +81,14 @@ dependencies:
 #   excludettl: true
 #   validation: [allow-any-extensions, no-broken-links]
 #
+parameters:
+  shownav: 'true'
+  apply-contact: 'true'
+  apply-jurisdiction: 'true'
+  apply-publisher: 'true'
+  apply-version: 'true'
+  propagate-status: true
+  
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
 # │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
