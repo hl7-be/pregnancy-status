@@ -33,11 +33,11 @@ contact:
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-  hl7.fhir.be.core-clinical: 1.1.0
+  hl7.fhir.be.core-clinical: 1.2.0
   hl7.fhir.be.core: 2.1.2
   # Provides the IPS value sets (edd-method-uv-ips, pregnancy-status-uv-ips) used
   # by the demonstrative observation profiles.
-  hl7.fhir.uv.ips: 2.0.0
+  hl7.fhir.uv.ips: 2.0.1
 
 # dependencies:
 #   hl7.fhir.us.core: 3.1.0
