@@ -67,7 +67,7 @@
   "effectiveDateTime": "2026-02-10",
   "valueCodeableConcept": {
     "coding": [
-      { "system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant (finding)" }
+      { "system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnancy (finding)" }
     ]
   },
   "hasMember": [

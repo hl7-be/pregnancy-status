@@ -6,6 +6,6 @@ Id: be-pregnancy-status-vs
 Title: "Pregnancy status value set (BE)"
 Description: "Codes describing the current pregnancy status of a woman, aligned with the IPS pregnancy status value set."
 * ^status = #draft
-* $SCT#77386006 "Pregnant (finding)"
+* $SCT#77386006 "Pregnancy (finding)"
 * $SCT#60001007 "Not pregnant (finding)"
 * $SCT#102874004 "Possible pregnancy (finding)"
