@@ -64,7 +64,7 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 // ── Contained detail observations: sliced by type, then by code ──
 * contained ^slicing.discriminator[0].type = #type
 * contained ^slicing.discriminator[0].path = "$this"
-* contained ^slicing.discriminator[1].type = #pattern
+* contained ^slicing.discriminator[1].type = #value
 * contained ^slicing.discriminator[1].path = "code"
 * contained ^slicing.rules = #open
 * contained contains
