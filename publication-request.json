@@ -1,0 +1,17 @@
+{
+  "package-id": "hl7.fhir.be.pregnancy-status",
+  "version": "1.0.0",
+  "status": "release",
+  "sequence": "Trial Use",
+  "fhirversion": "R4",
+  "desc": "eHealth FHIR Pregnancy Status Profiles for Belgium",
+  "desccmd": "eHealth FHIR Pregnancy Status Profiles for Belgium",
+  "title": "eHealth FHIR Pregnancy Status Profiles for Belgium",
+  "ci-build" : "https://build.fhir.org/ig/hl7-be/pregnancy-status",
+  "category": "National Base",
+  "introduction": "eHealth FHIR Pregnancy Status Profiles for Belgium",
+  "path": "https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/1.0.0",
+  "mode" : "milestone",
+  "milestone" : true,
+  "first": true
+}
