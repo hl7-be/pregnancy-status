@@ -14,4 +14,7 @@
   "mode" : "milestone",
   "milestone" : true,
   "first": true
+  "registry-description": "eHealth FHIR Pregnancy Status Profiles for Belgium",
+  "registry-country": "be",
+  "registry-authority": "eHealth Platform (BE)"
 }
