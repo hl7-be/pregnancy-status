@@ -3,7 +3,7 @@
   "id": "ex-pregnancy-status-contained",
   "meta": {
     "profile": [
-      "https://www.ehealth.fgov.be/standards/fhir/pregnancy/StructureDefinition/be-pregnancy-status"
+      "https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/StructureDefinition/be-pregnancy-status"
     ]
   },
   "contained": [
@@ -14,7 +14,7 @@
         "profile": [ "https://www.ehealth.fgov.be/standards/fhir/core-clinical/StructureDefinition/be-clinical-observation" ]
       },
       "identifier": [
-        { "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/observation", "value": "edd-contained" }
+        { "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation", "value": "edd-contained" }
       ],
       "status": "final",
       "code": {
@@ -34,7 +34,7 @@
         "profile": [ "https://www.ehealth.fgov.be/standards/fhir/core-clinical/StructureDefinition/be-clinical-observation" ]
       },
       "identifier": [
-        { "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/observation", "value": "children-contained" }
+        { "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation", "value": "children-contained" }
       ],
       "status": "final",
       "code": {
@@ -50,7 +50,7 @@
   ],
   "identifier": [
     {
-      "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/observation",
+      "system": "https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation",
       "value": "status-contained"
     }
   ],
