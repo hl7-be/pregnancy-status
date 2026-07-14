@@ -5,12 +5,29 @@ This Belgian standard is based on requirements initially raised by Flanders and 
 These evolutions are always developed through a structured process, in which stakeholders are actively involved in working groups, both from existing and new initiatives.
 
 
-## Introduction
+### Introduction
 
 This Implementation Guide (IG) defines how pregnancy data is exchanged in Belgium using HL7 FHIR. Pregnancy and birth involve a broad pregnancy care set, contributed and consumed by many initiatives and stakeholders over the full course of care. This IG is the common specification for that care set, designed to be reused across projects and to extend as additional stakeholders contribute their data and use cases.
 
 It specifies the [**pregnancy status**](pregnancy-status.html) data set — a well-bounded, widely reusable part of that care set, making pregnancy data available to government agencies, to the pregnant woman herself, and to her caregivers.
 
-## Scope
+### Scope
 
 This IG covers the pregnancy status data set. A broader set of administrative and clinical pregnancy data is out of scope, but the model is designed to extend towards it without redesign. See the [pregnancy status](pregnancy-status.html) page for details.
+
+### Dependencies
+This IG Contains the following dependencies on other IGs.
+
+{% include dependency-table.xhtml %}
+
+### Cross Version Analysis
+
+{% capture cross-version-analysis %}{% include cross-version-analysis.xhtml %}{% endcapture %}{{ cross-version-analysis | remove: '<p>' | remove: '</p>'}}
+
+### Global Profiles
+
+{% include globals-table.xhtml %}
+
+### Intellectual Property Considerations
+
+{% include ip-statements.xhtml %}
