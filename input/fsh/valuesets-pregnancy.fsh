@@ -8,4 +8,4 @@ Description: "Codes describing the current pregnancy status of a woman, aligned 
 * ^status = #draft
 * $SCT#77386006 "Pregnant (finding)"
 * $SCT#60001007 "Not pregnant (finding)"
-* $SCT#102874004 "Possible pregnancy (finding)"
+// * $SCT#102874004 "Possible pregnancy (finding)"
