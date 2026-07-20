@@ -60,6 +60,7 @@ clinical care**; for clinical care the pregnancy is more commonly represented as
 * device 0..0
 * method 0..0
 * interpretation 0..0
+* valueCodeableConcept from be-pregnancy-status-vs
 
 // ── Contained detail observations: sliced by type, then by code ──
 * contained ^slicing.discriminator[0].type = #type

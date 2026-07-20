@@ -10,4 +10,4 @@ Description: "Codes describing the current pregnancy status of a woman, aligned 
 * ^experimental = false
 * $SCT#77386006 "Pregnancy (finding)"
 * $SCT#60001007 "Not pregnant (finding)"
-* $SCT#102874004 "Possible pregnancy (finding)"
+// * $SCT#102874004 "Possible pregnancy (finding)"
