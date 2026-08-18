@@ -89,6 +89,8 @@ parameters:
   apply-version: 'true'
   propagate-status: true
   excludettl: true
+  path-expansion-params: ../../Parameters-terminology-expansion.json
+  path-history: https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/history.html
   
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
@@ -159,6 +161,10 @@ menu:
 #     description: An example Patient
 #     exampleBoolean: true
 #   Patient/bad-example: omit
+resources:
+  Observation/ex-pregnancy-status-contained:
+    name: Pregnancy Status Contained Example
+    description: Example of a pregnancy status observation using contained resources.
 #
 #
 # Groups can control certain aspects of the IG generation.  The IG
