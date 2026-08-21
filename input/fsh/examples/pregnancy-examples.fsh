@@ -20,7 +20,6 @@ Alias: $CondClinical = http://terminology.hl7.org/CodeSystem/condition-clinical
 Alias: $PregnancyId  = https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/pregnancy
 Alias: $ObsId        = https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/observation
 Alias: $StatusObsId  = https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation
-Alias: $BeClinObs    = https://www.ehealth.fgov.be/standards/fhir/core-clinical/StructureDefinition/be-clinical-observation
 Alias: $BePregStatus = https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/StructureDefinition/be-pregnancy-status
 
 
@@ -45,12 +44,15 @@ Description: "Practitioner who records the pregnancy data in all examples."
 
 
 // ─── Pregnancy status containing its detail observations ─────────────────────
-//  InstanceOf is base Observation with the profile claimed via meta.profile:
-//  SUSHI cannot place an inline instance into a `contained` slice, so the
-//  container cannot be InstanceOf BePregnancyStatus.
+//  The recorder is carried in the be-ext-recorder extension, mandatory on every
+//  BeClinicalObservation — the container and each contained detail alike.
+//
+//  The container claims BePregnancyStatus via meta.profile, not InstanceOf: SUSHI
+//  cannot place an inline instance into a `contained` slice. sushi-config sets
+//  setMetaProfile: never, so meta.profile is only ever what is assigned here.
 
 Instance:   ex-pregnancy-status-contained
-InstanceOf: Observation
+InstanceOf: BeClinicalObservation
 Usage:      #example
 Title:      "Pregnancy Status Contained Example"
 Description: "Example of a pregnancy status observation using contained resources."
@@ -62,39 +64,37 @@ Description: "Example of a pregnancy status observation using contained resource
 * status = #final
 * code = $LOINC#82810-3 "Pregnancy status"
 * subject = Reference(ex-pregnant-woman)
-* performer = Reference(ex-gynaecologist)
+* extension[recorder].valueReference = Reference(ex-gynaecologist)
 * effectiveDateTime = "2026-02-10"
 * valueCodeableConcept = $SCT#77386006 "Pregnancy (finding)"
 * hasMember[0] = Reference(edd)
 * hasMember[+] = Reference(children)
 
 Instance:   edd
-InstanceOf: Observation
+InstanceOf: BeClinicalObservation
 Usage:      #inline
 Title:      "Expected date of delivery (contained)"
 Description: "Estimated date of delivery, contained in the pregnancy status observation."
-* meta.profile = $BeClinObs
 * identifier.system = $StatusObsId
 * identifier.value = "edd-contained"
 * status = #final
 * code = $LOINC#11778-8 "Delivery date Estimated"
 * subject = Reference(ex-pregnant-woman)
-* performer = Reference(ex-gynaecologist)
+* extension[recorder].valueReference = Reference(ex-gynaecologist)
 * effectiveDateTime = "2026-02-10"
 * valueDateTime = "2026-09-15"
 
 Instance:   children
-InstanceOf: Observation
+InstanceOf: BeClinicalObservation
 Usage:      #inline
 Title:      "Expected number of children (contained)"
 Description: "Expected number of children, contained in the pregnancy status observation."
-* meta.profile = $BeClinObs
 * identifier.system = $StatusObsId
 * identifier.value = "children-contained"
 * status = #final
 * code = $LOINC#11878-6 "Number of fetuses by US"
 * subject = Reference(ex-pregnant-woman)
-* performer = Reference(ex-gynaecologist)
+* extension[recorder].valueReference = Reference(ex-gynaecologist)
 * effectiveDateTime = "2026-02-10"
 * valueInteger = 1
 

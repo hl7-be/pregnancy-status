@@ -232,6 +232,7 @@ instanceOptions:
   # in an Instance's assignment rule. All slices appear in the order in which they are specified in FSH rules.
   # While SUSHI defaults to false for legacy reasons, manualSliceOrding is recommended for new projects.
   manualSliceOrdering: true # true | false
+  setMetaProfile: never # always | never | inline-only | standalone-only
   # Determines for which types of Instances SUSHI will automatically set meta.profile
   # if InstanceOf references a profile:
   #
