@@ -6,4 +6,4 @@
 
 
 # Expected: result of the pin-canonicals (pin-multiples) parameter active in this project
-Pinned the version of %: ...
+Pinned the version of %
