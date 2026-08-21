@@ -7,3 +7,11 @@
 
 # Expected: result of the pin-canonicals (pin-multiples) parameter active in this project
 Pinned the version of %: ...
+
+
+# The naming system for Observations is not decided yet
+No definition could be found for URL value 'https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation'
+
+
+# No OIDs assigned for the time being.
+The resource ValueSet/be-pregnancy-status-vs should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
