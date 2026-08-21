@@ -4,10 +4,8 @@
 //  The administrative model is BePregnancyStatus — a pregnancy status Observation
 //  that CONTAINS its detail observations (EDD, expected number of children, …),
 //  each a generic be-clinical-observation distinguished only by its code. The
-//  single consolidated example is provided as predefined JSON:
-//    input/examples/Observation-ex-pregnancy-status-contained.json
-//  (SUSHI cannot build an inline-instance example whose contained resources are
-//  sliced by code, so it lives as a predefined resource.)
+//  single consolidated example is defined below in FSH: the detail observations
+//  are `Usage: #inline` instances assigned to `contained`.
 //
 //  Active here: the shared actors (Patient, Practitioner) referenced by that
 //  contained instance, plus one Condition example (the episode framing).
@@ -21,6 +19,9 @@
 Alias: $CondClinical = http://terminology.hl7.org/CodeSystem/condition-clinical
 Alias: $PregnancyId  = https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/pregnancy
 Alias: $ObsId        = https://www.ehealth.fgov.be/standards/fhir/pregnancy/sid/observation
+Alias: $StatusObsId  = https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/sid/observation
+Alias: $BeClinObs    = https://www.ehealth.fgov.be/standards/fhir/core-clinical/StructureDefinition/be-clinical-observation
+Alias: $BePregStatus = https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/StructureDefinition/be-pregnancy-status
 
 
 // ─── Shared actors ───────────────────────────────────────────────────────────
@@ -41,6 +42,61 @@ Title:      "Example gynaecologist"
 Description: "Practitioner who records the pregnancy data in all examples."
 * name.family = "De Vries"
 * name.given = "Anke"
+
+
+// ─── Pregnancy status containing its detail observations ─────────────────────
+//  InstanceOf is base Observation with the profile claimed via meta.profile:
+//  SUSHI cannot place an inline instance into a `contained` slice, so the
+//  container cannot be InstanceOf BePregnancyStatus.
+
+Instance:   ex-pregnancy-status-contained
+InstanceOf: Observation
+Usage:      #example
+Title:      "Pregnancy Status Contained Example"
+Description: "Example of a pregnancy status observation using contained resources."
+* meta.profile = $BePregStatus
+* contained[0] = edd
+* contained[+] = children
+* identifier.system = $StatusObsId
+* identifier.value = "status-contained"
+* status = #final
+* code = $LOINC#82810-3 "Pregnancy status"
+* subject = Reference(ex-pregnant-woman)
+* performer = Reference(ex-gynaecologist)
+* effectiveDateTime = "2026-02-10"
+* valueCodeableConcept = $SCT#77386006 "Pregnancy (finding)"
+* hasMember[0] = Reference(edd)
+* hasMember[+] = Reference(children)
+
+Instance:   edd
+InstanceOf: Observation
+Usage:      #inline
+Title:      "Expected date of delivery (contained)"
+Description: "Estimated date of delivery, contained in the pregnancy status observation."
+* meta.profile = $BeClinObs
+* identifier.system = $StatusObsId
+* identifier.value = "edd-contained"
+* status = #final
+* code = $LOINC#11778-8 "Delivery date Estimated"
+* subject = Reference(ex-pregnant-woman)
+* performer = Reference(ex-gynaecologist)
+* effectiveDateTime = "2026-02-10"
+* valueDateTime = "2026-09-15"
+
+Instance:   children
+InstanceOf: Observation
+Usage:      #inline
+Title:      "Expected number of children (contained)"
+Description: "Expected number of children, contained in the pregnancy status observation."
+* meta.profile = $BeClinObs
+* identifier.system = $StatusObsId
+* identifier.value = "children-contained"
+* status = #final
+* code = $LOINC#11878-6 "Number of fetuses by US"
+* subject = Reference(ex-pregnant-woman)
+* performer = Reference(ex-gynaecologist)
+* effectiveDateTime = "2026-02-10"
+* valueInteger = 1
 
 /*     
 // ─── Pregnancy as a Condition (episode framing) ──────────────────────────────
