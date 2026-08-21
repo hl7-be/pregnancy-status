@@ -46,13 +46,11 @@ concepts, each represented by a different FHIR resource type:
 
 - **Pregnancy status** — a *point-in-time clinical finding* ("is this person
   pregnant, and what is the status as of the observation date?"). Represented as an
-  `Observation`, aligned with the IPS *Pregnancy status* observation. See
-  [BePregnancyStatusObservation](StructureDefinition-be-observation-pregnancy-status.html).
+  `Observation`, aligned with the IPS *Pregnancy status* observation.
 - **The pregnancy itself** — the *longitudinal clinical episode* with an onset and
   actual end date. Represented as a `Condition`. The detail observations (due date,
   expected number of children, etc.) reference it — it is the observations that
-  point to the `Condition`, not the reverse. See
-  [BePregnancyCondition](StructureDefinition-be-pregnancy-condition.html).
+  point to the `Condition`, not the reverse.
 
 In both cases the supporting detail elements (expected date of delivery, expected
 number of children, actual end date) are carried as separate
