@@ -91,7 +91,7 @@ parameters:
   excludettl: true
   path-expansion-params: ../../Parameters-terminology-expansion.json
   path-history: https://www.ehealth.fgov.be/standards/fhir/pregnancy-status/history.html
-  
+  pin-canonicals: pin-multiples
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
 # │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
