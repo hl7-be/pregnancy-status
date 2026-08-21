@@ -37,7 +37,7 @@ values**, not bindings. `bodySite`, `component`, `specimen`, `referenceRange`,
 There is **no StructureDefinition per detail type**; the slicing and profiling live
 on the contained resources. Pregnancy status is for administrative sharing, **not
 clinical care**; for clinical care the pregnancy is more commonly represented as a
-`Condition` (see [BePregnancyCondition](StructureDefinition-be-pregnancy-condition.html)).
+`Condition`.
 """
 
 // ── The pregnancy status observation itself ──
